@@ -175,6 +175,17 @@ public function cek(){
 //     	echo 'RESULT <br><pre>';
 //     	var_dump($result);
 //     	echo '</pre>' ;
+//     	if ($result->va_number) {
+//     		foreach ($result->va_number as $i) {
+//     			$bill_key=$i->va_number;
+//     		}
+//     	}else{
+//     		$bill_key=$result->bill_key;
+//     	}
+
+//     	echo $bill_key;
+
+//     	// var_dump($result['va_numbers']->va_number);
 // die();
     	// $total=$result->bill_key;
     	// var_dump($total);
@@ -225,7 +236,7 @@ public function cek(){
           if ($this->mailer->send($sendmail))
           {
             	$data = array(
-						'id_order' 		=> $id_order,
+						'id_order' 		=> $result->order_id,
 						'nama_pemesan' 	=> $nama_pemesan,
 						'email' 		=> $email,
 						'total' 		=> $total,
@@ -236,14 +247,15 @@ public function cek(){
 						'service' 		=> $layanan[1],
 						'tgl_pesan' 	=> $tgl_pesan,
 						'bts_bayar' 	=> $bts,
-						'status_proses'	=> 'belum'
+						'status_proses'	=> $result->status_message
+						
 					);
 
 				if ($this->app->insert('t_order', $data)) {
 
 					foreach ($this->cart->contents() as $key) {
 						$detail = [
-									'id_order' 	=> $id_order,
+									'id_order' 	=> $result->order_id,
 									'id_item' 	=> $key['id'],
 									'qty' 		=> $key['qty'],
 									'biaya' 		=> $key['subtotal']

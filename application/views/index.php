@@ -78,25 +78,17 @@ $prof = $profil->row();
                       <?php endforeach; ?>
                   </ul>
                 </li>
-
-               <?php if ($this->session->userdata('user_login')) { ?>
-
-                  <li><a href="#" class="dropdown-button" data-activates="drop2"><i class="fa fa-user"></i> <?= ucwords($this->session->userdata('name')); ?><i class="fa fa-caret-down right"></i></a></li>
-
-                  <ul class="dropdown-content" id="drop2">
-                     <li><a href="<?= base_url('home/profil'); ?>"><i class="fa fa-user"></i> Profil</a></li>
-                     <li><a href="<?= base_url('home/password'); ?>"><i class="fa fa-key"></i> Ubah Password</a></li>
-                     <li><a href="<?= base_url('home/transaksi'); ?>"><i class="fa fa-exchange"></i> Transaksi</a></li>
-                     <li><a href="<?= base_url('home/logout'); ?>"><i class="fa fa-sign-out"></i> logout</a></li>
-                  </ul>
-               <?php } else { ?>
-
-                  <li><a href="<?= base_url('home/login'); ?>"><i class="fa fa-sign-in"></i> login</a></li>
-                  <li><a href="<?= base_url('home/registrasi'); ?>"><i class="fa fa-edit"></i> Registrasi</a></li>
-
-               <?php } ?>
-               <li><a href="<?= base_url('cart'); ?>"><i class="fa fa-shopping-cart"></i> cart</a></li>
-               <li><a href="<?= base_url('home/upload_bukti'); ?>"><i class="fa fa-upload"></i> Unggah Bukti</a></li>
+               <li><a href="<?= base_url('cart'); ?>"><i class="fa fa-shopping-cart"></i> Cart 
+                  <div align="right">
+                  <?php
+                        if ($this->cart->total() > 0) {
+                           echo 'Rp. '.number_format($this->cart->total(), 0, ',', '.');
+                        } else {
+                           echo 'cart';
+                        }
+                        ?>
+                        </div>
+               </a></li>
             </ul>
          </nav>
       </header>

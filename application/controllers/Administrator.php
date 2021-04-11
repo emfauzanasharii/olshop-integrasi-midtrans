@@ -19,7 +19,7 @@ class Administrator extends CI_Controller {
 		// $data['item'] = $this->admin->count('t_items');
 		// $data['trans'] = $this->admin->count_where('t_order', ['status_proses!=' => 'belum']);
 		// $data['last'] = $this->admin->last('t_order', 3, 'tgl_pesan');
-		redirect('item');
+		redirect(base_url().'item');
 	}
 
 	public function edit_profil()
@@ -53,7 +53,7 @@ class Administrator extends CI_Controller {
 
 					$this->admin->update('t_admin', $data, $cond);
 
-					redirect('administrator');
+					redirect(base_url().'administrator');
 				}
 			}
 
@@ -95,7 +95,7 @@ class Administrator extends CI_Controller {
 
 					$this->admin->update('t_admin', $data, $cond);
 
-					redirect('login/logout');
+					redirect(base_url().'login/logout');
 				}
 			}
 		}
@@ -115,7 +115,7 @@ class Administrator extends CI_Controller {
 	{
 		if (!$this->session->userdata('admin'))
 		{
-			redirect('login');
+			redirect(base_url().'login');
 		}
 	}
 }
