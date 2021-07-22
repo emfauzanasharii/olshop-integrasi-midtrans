@@ -2,22 +2,6 @@
 
 class Snap extends CI_Controller {
 
-	/**
-	 * Index Page for this controller.
-	 *
-	 * Maps to the following URL
-	 * 		http://example.com/index.php/welcome
-	 *	- or -  
-	 * 		http://example.com/index.php/welcome/index
-	 *	- or -
-	 * Since this controller is set as the default controller in 
-	 * config/routes.php, it's displayed at http://example.com/
-	 *
-	 * So any other public methods not prefixed with an underscore will
-	 * map to /index.php/welcome/<method_name>
-	 * @see http://codeigniter.com/user_guide/general/urls.html
-	 */
-
 
 	public function __construct()
     {
@@ -70,25 +54,7 @@ public function cek(){
 		  'order_id' => rand(),
 		  'gross_amount' => $subtotal+$ongkir, // no decimal allowed for creditcard
 		);
-		// $item_details=array();
 
-		// foreach ($this->cart->contents() as $key) {
-		// 	$item_details[]=array(
-		// 	  'id' => $key['id'],
-		// 	  'price' => $key['price'],
-		// 	  'quantity' => $key['qty'],
-		// 	  'name' => $key['name']
-		// 	);
-		// };
-
-		
-
-		// Optional
-		
-		  // 'id' => 'a1',
-		  // 'price' => $ongkir,
-		  // 'quantity' => 1,
-		  // 'name' => "ongkir"
 			foreach ($this->cart->contents() as $key) {
 				$item1_details[] = array(
 		 'id' => $key['id'],
@@ -97,16 +63,6 @@ public function cek(){
 		'name' => $key['name']);
 	 	};
 
-
-	 // 	// var_dump($item1_details);
-
-		// // Optional
-		// $item2_details = array(
-		//   'id' => 'a2',
-		//   'price' => $1000,
-		//   'quantity' => 1,
-		//   'name' => "Ongkir"
-		// );
 
 		// // Optional
 		$item_details = array ($item1_details,$item2_details);
@@ -172,26 +128,7 @@ public function cek(){
     public function finish()
     {
     	$result = json_decode($this->input->post('result_data'));
-//     	echo 'RESULT <br><pre>';
-//     	var_dump($result);
-//     	echo '</pre>' ;
-//     	if ($result->va_number) {
-//     		foreach ($result->va_number as $i) {
-//     			$bill_key=$i->va_number;
-//     		}
-//     	}else{
-//     		$bill_key=$result->bill_key;
-//     	}
 
-//     	echo $bill_key;
-
-//     	// var_dump($result['va_numbers']->va_number);
-// die();
-    	// $total=$result->bill_key;
-    	// var_dump($total);
-
-    	// die();
-				
 					$nama_pemesan = $this->input->post('first_name', TRUE).' '.$this->input->post('last_name', TRUE);
 					$email = $this->input->post('user_mail', TRUE);
 
@@ -268,6 +205,6 @@ public function cek(){
 
     }
 }
-redirect('home');
+redirect(base_url().'home');
 }
 }
